@@ -1,15 +1,15 @@
 ﻿using System;
 using Enemies;
 using Environment;
+using PureFunctions.UnitySpecific;
 using UnityEngine;
 
 namespace Player
 {
     [Serializable]
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : Singleton<PlayerManager>
     {
         public const string PlayerTag = "Player";
-        public static PlayerManager Instance;
         private PlayerAnimations animations;
         private PlayerMovement movement;
         private PlayerLives lives;
@@ -19,34 +19,25 @@ namespace Player
 
         private void Awake()
         {
-            Initialise();
-        }
-        
-        private void Initialise()
-        {
-            Instance = this;
             movement = new PlayerMovement(new []{transform}, GetComponent<Rigidbody2D>());
             animations = new PlayerAnimations(GetComponent<Animator>(), transform);
             lives = new PlayerLives();
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             Ladder.OnPlayerEnter += OnLadderEnter;
             CauseDamage.OnPlayerEnter += ReceiveDamage;
         }
         
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
             Ladder.OnPlayerEnter -= OnLadderEnter;
             CauseDamage.OnPlayerEnter -= ReceiveDamage;
         }
 
-        public void FixedUpdate()
-        {
-            movement.OnFixedUpdate();
-        }
-        
         public void Update()
         {
             movement.OnUpdate();

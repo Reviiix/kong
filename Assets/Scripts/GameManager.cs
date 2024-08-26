@@ -1,18 +1,13 @@
 ﻿using Player;
+using PureFunctions.UnitySpecific;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
     [FormerlySerializedAs("restartCounter")] [SerializeField] private RestartTimer restartTimer;
     [SerializeField] private Transform spawnPoint;
     private const int RestartTime = 3;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
     
     private void Start()
     {
