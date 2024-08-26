@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7057179261131864406}
   m_Layer: 5
   m_Name: GRP_FloorBase
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bc20a9c78ff459a93f6c60e8cc0084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
 --- !u!114 &3179397786200033336
 MonoBehaviour:
   m_ObjectHideFlags: 0

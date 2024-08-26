@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Player
 {
     [Serializable]
-    public class PlayerMovement
+    public class PlayerMovement //TODO: state machine
     {
         private bool enabled;
         private Transform[] playerTransform; //Using an array because the movement system handles arrays better than single transforms (job system).
@@ -18,7 +18,7 @@ namespace Player
         
         private const int JumpHeight = 250;
         private bool jump;
-        public bool InAir => !Floor.PlayerOnGround;
+        public bool InAir => !Floor.PlayerGrounded;
         
         private const int ClimbingSpeed = 10;
         private bool climbUp;
@@ -98,7 +98,7 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                jump = !InAir;
+                jump = true;
             }
         
             if (Input.GetKey(KeyCode.RightArrow))
@@ -142,7 +142,7 @@ namespace Player
             MovePlayer(new[] {new Vector3(playerTransform.First().localPosition.x-1, playerTransform.First().localPosition.y)}, MovementSpeed);
         }
         
-        private void MovePlayer(Vector3[] newPosition, int movementSpeed)
+        public void MovePlayer(Vector3[] newPosition, int movementSpeed)
         {
             MovementJobs.MoveObjects(playerTransform, newPosition, movementSpeed);
         }

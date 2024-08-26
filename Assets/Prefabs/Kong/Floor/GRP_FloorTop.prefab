@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1616730515418920147}
   m_Layer: 5
   m_Name: GRP_FloorTop
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6bc20a9c78ff459a93f6c60e8cc0084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 1
 --- !u!114 &1081032348245541179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,10 +121,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -135.11649, y: 17.529}
-  - {x: -104.97197, y: 17.605934}
-  - {x: 106.22315, y: 9.589729}
-  - {x: 134.54451, y: 9.548886}
+  - {x: -133.93439, y: 9.549835}
+  - {x: 10.937977, y: 9.331253}
+  - {x: 109.47392, y: 1.6105652}
+  - {x: 135.72661, y: 1.5697222}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0

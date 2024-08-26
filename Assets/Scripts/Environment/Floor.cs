@@ -4,32 +4,37 @@ using UnityEngine;
 [RequireComponent(typeof(EdgeCollider2D))]
 public class Floor : MonoBehaviour
 {
-    public static bool PlayerOnGround { get; private set; }
+    /// <summary>
+    /// false = left
+    /// right = left
+    /// </summary>
+    public bool direction = true;
+    public static bool PlayerGrounded { get; private set; }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(PlayerManager.PlayerTag))
         {
-            PlayerOnGround = true;
+            PlayerGrounded = true;
         }
     }
     
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (PlayerOnGround) return;
+        if (PlayerGrounded) return;
         
         if (other.CompareTag(PlayerManager.PlayerTag))
         {
-            PlayerOnGround = true;
+            PlayerGrounded = true;
         }
-        PlayerOnGround = false;
+        PlayerGrounded = false;
     }
     
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag(PlayerManager.PlayerTag))
         {
-            PlayerOnGround = false;
+            PlayerGrounded = false;
         }
     }
 }

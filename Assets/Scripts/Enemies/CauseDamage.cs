@@ -7,7 +7,7 @@ public abstract class CauseDamage : MonoBehaviour
 {
     public static Action OnPlayerEnter;
 
-    private void OnTriggerEnter2D(Collider2D c)
+    protected virtual void OnTriggerEnter2D(Collider2D c)
     {
         if (!c.CompareTag(PlayerManager.PlayerTag)) return;
         

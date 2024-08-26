@@ -51,9 +51,10 @@ namespace Player
             animations.OnUpdate();
         }
         
-        private void OnLadderEnter(bool enter)
+        private void OnLadderEnter(bool enter, Vector3 ladderPosition)
         {
             movement.OnLadderEnter(enter);
+            TransportPlayer(new[] {new Vector3(ladderPosition.x, transform.position.y)});
         }
         
         public void EnableMovement(bool state = true)
@@ -61,9 +62,9 @@ namespace Player
             movement.Enable(state);
         }
         
-        public void TransportPlayer(Vector3 position)
+        public void TransportPlayer(Vector3[] position)
         {
-            transform.localPosition = position;
+            movement.MovePlayer(position, 1);
         }
 
         private void AddLife()
@@ -98,7 +99,7 @@ namespace Player
         
         public void Respawn(Vector3 point)
         {
-            TransportPlayer(point);
+            TransportPlayer(new [] { new Vector3(point.x, point.y, point.z)});
             EnableMovement();
             ResetDeadAnimation();
         }
