@@ -2,15 +2,18 @@ using System;
 using Player;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public abstract class CauseDamage : MonoBehaviour
+namespace Enemies
 {
-    public static Action OnPlayerEnter;
-
-    protected virtual void OnTriggerEnter2D(Collider2D c)
+    [RequireComponent(typeof(Collider2D))]
+    public abstract class CauseDamage : MonoBehaviour
     {
-        if (!c.CompareTag(PlayerManager.PlayerTag)) return;
+        public static Action OnPlayerEnter;
+
+        protected virtual void OnTriggerEnter2D(Collider2D c)
+        {
+            if (!c.CompareTag(PlayerManager.PlayerTag)) return;
         
-        OnPlayerEnter?.Invoke();
+            OnPlayerEnter?.Invoke();
+        }
     }
 }

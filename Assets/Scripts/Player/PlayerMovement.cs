@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using PureFunctions.Movement;
+using Environment;
+using PureFunctions.UnitySpecific.Movement;
 using UnityEngine;
 
 namespace Player

@@ -1,4 +1,6 @@
 ﻿using System;
+using Enemies;
+using Environment;
 using UnityEngine;
 
 namespace Player

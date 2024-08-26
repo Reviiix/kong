@@ -1,4 +1,7 @@
-public class Enemy : CauseDamage
+namespace Enemies
 {
+    public class Enemy : CauseDamage
+    {
 
+    }
 }

@@ -1,33 +1,37 @@
+using Environment;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-public class Barrel : CauseDamage
+namespace Enemies
 {
-    private Rigidbody2D barrelRigidBody;
-    private int PushForce = 5;
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Barrel : CauseDamage
     {
-        barrelRigidBody = GetComponent<Rigidbody2D>();
-    }
+        private Rigidbody2D barrelRigidBody;
+        private int PushForce = 5;
+        private void Awake()
+        {
+            barrelRigidBody = GetComponent<Rigidbody2D>();
+        }
     
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        base.OnTriggerEnter2D(other);
-        if (other.CompareTag("Floor"))
+        protected override void OnTriggerEnter2D(Collider2D other)
         {
-            PushObject(other.GetComponent<Floor>().direction);
+            base.OnTriggerEnter2D(other);
+            if (other.CompareTag("Floor"))
+            {
+                PushObject(other.GetComponent<Floor>().direction);
+            }
         }
-    }
 
-    private void PushObject(bool direction)
-    {
-        if (direction) //right
+        private void PushObject(bool direction)
         {
-            barrelRigidBody.velocity = Vector2.right * PushForce;
-        }
-        else //left
-        {
-            barrelRigidBody.velocity = Vector2.left * PushForce;
+            if (direction) //right
+            {
+                barrelRigidBody.velocity = Vector2.right * PushForce;
+            }
+            else //left
+            {
+                barrelRigidBody.velocity = Vector2.left * PushForce;
+            }
         }
     }
 }
