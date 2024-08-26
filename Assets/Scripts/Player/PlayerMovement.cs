@@ -40,11 +40,6 @@ namespace Player
         {
             if (!enabled) return;
             CheckForInput();
-        }
-        
-        public void OnFixedUpdate()
-        {
-            if (!enabled) return;
             MoveObjects();
         }
 
