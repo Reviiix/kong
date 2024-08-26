@@ -1,40 +1,51 @@
-﻿using Statistics;
+﻿using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    [FormerlySerializedAs("restartCounter")] [SerializeField] private RestartTimer restartTimer;
+    [SerializeField] private Transform spawnPoint;
+    private const int RestartTime = 3;
 
     private void Awake()
     {
         Instance = this;
-        
-        //Cleanup after a large start up sequence.
-        Debugging.ClearUnusedAssetsAndCollectGarbage();
     }
-
+    
     private void Start()
     {
         StartGame();
     }
-    
-    [ContextMenu("Increment Score")]
-    public void IncrementScore()
+
+    private void StartGame()
     {
-        ScoreTracker.IncrementScore(0);
+        PlayerManager.Instance.EnableMovement();
     }
     
-    [ContextMenu("Start Game")]
-    public void StartGame()
+    public void EndRound(int lives)
     {
-        TimeTracker.StartTimer(ProjectManager.Instance);
+        if (lives > 0)
+        {
+            RestartGame(RestartTime);
+        }
+        else
+        {
+            GameOver();
+        }
     }
 
-    [ContextMenu("End Game")]
-    public void EndGame()
+    private void GameOver()
     {
-        TimeTracker.StopTimer();
-        HighScores.SetHighScore(ScoreTracker.Score);
-        ProjectManager.Instance.userInterface.EnableGameOverMenu();
+        restartTimer.GameOver();
+    }
+
+    private void RestartGame(int restartTime)
+    {
+        restartTimer.Begin(restartTime, () =>
+        {
+            PlayerManager.Instance.Respawn(spawnPoint.localPosition);
+        });
     }
 }
