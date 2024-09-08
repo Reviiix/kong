@@ -98,6 +98,11 @@ namespace Player
         {
             _playerAnimator.SetBool(HammerHash, true);
         }
+        
+        public void HammerPickupOver()
+        {
+            _playerAnimator.SetBool(HammerHash, false);
+        }
 
         public void Death()
         {

@@ -1,19 +1,29 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Pickups
 {
-    public static class PickupManager
+    public class PickupManager : MonoBehaviour
     {
+        [SerializeField] private Transform spawnPoints;
+        private List<Pickup> items;
+        //[SerializeField] itemPrefab
+
+        private void Spawn(PickupType item)
+        {
+            
+        }
+        
         public static void OnCollected(PickupType type)
         {
             switch (type)
             {
                 case PickupType.Hammer:
-                    //GameManager.Instance.HammerPickup();
+                    GameManager.Instance.HammerPickup();
                     break;
                 default:
-                    UnityEngine.Debug.LogError("NOt a valid collectable type, RETURN POINTS INSTEAD OF  BREAKING");
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    Debug.LogError($"Not a valid {typeof(PickupType)}, {type}.");
+                    break;
             }
         }
     }

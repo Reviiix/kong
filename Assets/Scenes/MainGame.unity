@@ -3790,6 +3790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018236709}
   - component: {fileID: 2018236710}
+  - component: {fileID: 2018236711}
   m_Layer: 0
   m_Name: GameMangers
   m_TagString: Untagged
@@ -3826,6 +3827,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartTimer: {fileID: 1472386325}
   spawnPoint: {fileID: 2108095752}
+--- !u!114 &2018236711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018236708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5468bf505d84d40b5c32ba400920e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints: {fileID: 0}
 --- !u!1 &2028188197
 GameObject:
   m_ObjectHideFlags: 0

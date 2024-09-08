@@ -13,6 +13,7 @@ namespace Player
         private PlayerAnimations animations;
         private PlayerMovement movement;
         private PlayerLives lives;
+        private bool Invincible;
         [SerializeField] private PlayerHammer hammer;
         public bool Climbing => movement.Climbing;
         public bool InAir => movement.InAir;
@@ -65,19 +66,29 @@ namespace Player
             lives.AddLife();
         }
 
-        public void HammerPickup(int time = 10)
-        {
-            animations.HammerPickup(time);
-        }
-
         private void ReceiveDamage()
         {
+            if (Invincible) return;
             lives.RemoveLife((livesRemaining) =>
             {
                 EnableMovement(false);
                 animations.Death();
                 GameManager.Instance.EndRound(livesRemaining);
             });
+        }
+        
+        public void StartHammerTime(int time = 10)
+        {
+            animations.HammerPickup(time);
+            Invincible = true;
+
+            StartCoroutine(Wait.WaitThenCallBack(time, StopHammerTime));
+        }
+        
+        public void StopHammerTime()
+        {
+            animations.HammerPickupOver();
+            Invincible = false;
         }
 
         public void Dead()

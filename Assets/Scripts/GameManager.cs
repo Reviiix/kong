@@ -19,6 +19,11 @@ public class GameManager : Singleton<GameManager>
         PlayerManager.Instance.EnableMovement();
     }
     
+    public void HammerPickup()
+    {
+        PlayerManager.Instance.StartHammerTime();
+    }
+    
     public void EndRound(int lives)
     {
         if (lives > 0)
